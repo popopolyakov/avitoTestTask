@@ -15,6 +15,25 @@ function Paginator(props) {
     <div className="Pagination">
       <h1>{!!props.searchText ? `Показаны результаты по запросу "${props.searchText}"` : 'Самые популярные репозитории'}</h1>
       <div>
+        <div className="Pagination__block">
+          <div className="Pagination__number">
+            №
+          </div>
+          <div className="Pagination__name">
+            Название
+          </div>
+          <div className='Pagination_info'>
+            <div className="Pagination__stars"> 
+              Stars
+            </div>
+            <div className="Pagination__lastCommit">
+              Последний коммит
+            </div>
+            <div className="Pagination__url">
+              Github
+            </div>
+          </div>
+        </div>
       {props.repos.map((item, i) => (
         <div key={item.id} className="Pagination__block">
           <div className="Pagination__number">
