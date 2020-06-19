@@ -1,0 +1,31 @@
+.RepoCard{ 
+ display: flex;
+ flex-direction: column; 
+ align-items: center;
+ justify-self: center;
+ justify-content: center;
+}
+
+p {
+    font-size: 15pt
+}
+
+.RepoCard__mainInfo{ 
+    display: flex;
+    flex-direction: row; 
+    width: 100%; 
+    justify-content: space-between; 
+    
+}
+
+.RepoCard__repoInfo,
+.RepoCard__ownerInfo {
+    width:50%;
+    flex-flow: wrap;
+    
+}
+
+.RepoCard__ownerImg{ 
+    width: 100px;
+    height: auto;
+}

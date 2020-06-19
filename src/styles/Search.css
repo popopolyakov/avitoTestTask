@@ -1,0 +1,48 @@
+.searchForm__btn {
+    background-color: dodgerblue;
+    border: 1px solid royalblue;
+    color: white;
+    box-shadow: none;
+    margin: 0px 10px;
+    font-size: 13pt;
+    border-radius: 4px;
+    height: 27px;
+    width: 200px;
+}
+
+.searchForm__input:active {
+    outline: none;
+}
+.searchForm__input:focus {
+    outline: 1px solid grey;
+}
+
+
+.searchForm__btn:active {
+    border: 2px solid royalblue;
+    outline: none
+}
+.searchForm__btn:focus {
+    outline: none
+}
+.searchForm__btn:hover {
+    background-color: lightskyblue;
+}
+.searchForm__input {
+    height: 21px;
+    width: 200px;
+}
+
+.searchForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.searchForm__btnContainer{
+
+}
+
+.searchContainer{
+   
+}

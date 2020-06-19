@@ -1,0 +1,64 @@
+.Pagination__block {
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    font-size: 15pt;
+}
+
+a:visited {
+    color: mediumturquoise;
+}
+
+a:hover {
+    color: lightskyblue;
+    text-decoration: underline;
+}
+
+a {
+    color: dodgerblue;
+    text-decoration: none;
+}
+
+.Pagination__name,
+.Pagination__number,
+.Pagination_info,
+.Pagination__stars {
+    margin: 0 10px;
+    flex: wrap;
+}
+
+.Pagination__url {
+    padding: 0 20px;
+}
+
+
+.Pagination_info{ 
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.Pagination__number {
+    flex-basis: 50px;
+}
+
+
+.pageBtn {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid gainsboro;
+    background-color: dodgerblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 3px;
+}
+
+.pageBtn:hover {
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+
+.pageBtn:visited {
+    background-color: royalblue;
+}
