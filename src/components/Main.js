@@ -68,7 +68,7 @@ function Main(props) {
     setPage(e)
     if (sessionStorage.page!==e) {
       console.log(e, 'event страницы', searchReq, 'запрос поиска')
-      let reposList = await getRepos(searchReq,e)
+      let reposList = await getRepos(!!sessionStorage.curSearch ? sessionStorage.curSearch : searchReq,e)
       setRepos(reposList)
       console.log(page)
       sessionStorage.page = e

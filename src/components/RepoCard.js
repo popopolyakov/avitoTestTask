@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import {Link} from 'react-router-dom'
 import '../styles/RepoCard.css';
 import axios from 'axios';
 
@@ -76,6 +77,7 @@ function RepoCard(props) {
 
     return (
         <div className="RepoCard">
+            <div><h3><Link to='/'>Назад</Link></h3></div>
             <div className="RepoCard__mainInfo">
                     <div className='RepoCard__repoInfo'>
                         <h1>{repoCard.name}</h1>
@@ -88,9 +90,9 @@ function RepoCard(props) {
                     </div>
             </div>
             <div className='RepoCard__description'>
-                <p><b>Используемые языки: </b>{load ? 'Загрузка': !!languages.length ? languages.map((item, i) => <span key={item}>{`${item}  `}</span>): 'Никакой из языков программирования не использовался'}</p>
+                <p><b>Используемые языки: </b>{load ? (<span>Загрузка</span>) : !!languages.length ? languages.map((item, i) => <span key={item}>{`${item}${i === languages.length-1 ? '' : ','}  `}</span>): 'Никакой из языков программирования не использовался'}</p>
                 <p><b>Краткое описание репозитория: </b>{repoCard.description}</p>
-                <p><b>10 активных контрибьюторов: </b>{load ? 'Загрузка': contributors.map((item, i) => <span key={item}>{`${item}${i === 9 ? '' : ','}  `}</span>)}</p>
+                <p><b>10 активных контрибьюторов: </b>{load ? (<span>Загрузка</span>): contributors.map((item, i) => <span key={item}>{`${item}${i === 9 ? '' : ','}  `}</span>)}</p>
             </div>
         </div>
     );
