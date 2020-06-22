@@ -93,7 +93,7 @@ function RepoCard(props) {
             <div className='RepoCard__description'>
                 <p><b>Используемые языки: </b>{load ? (<span>Загрузка</span>) : !!languages.length ? languages.map((item, i) => <span key={item}>{`${item}${i === languages.length-1 ? '' : ','}  `}</span>): 'Никакой из языков программирования не использовался'}</p>
                 <p><b>Краткое описание репозитория: </b>{!!repoCard.description ? repoCard.description : 'Описания нет'}</p>
-                <p><b>10 активных контрибьюторов: </b>{load ? (<span>Загрузка</span>): !!contributors.length ? contributors.map((item, i) => <span key={item}>{`${item}${i === contributors.length-1 ? ' (это был последний из Contributor\'ов)' : ','}  `}</span>) : 'Нет активных контрибьюторов'}</p>
+                <p><b>10 активных контрибьюторов: </b>{load ? (<span>Загрузка</span>): !!contributors.length ? contributors.map((item, i) => <span key={item}>{`${item}${i === contributors.length-1 ? i===9? '' : ' (это был последний из Contributor\'ов)' : ','}  `}</span>) : 'Нет активных контрибьюторов'}</p>
             </div>
         </div>
     );
