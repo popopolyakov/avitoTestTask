@@ -7,9 +7,9 @@ import '../styles/Paginator.css';
 
 function Paginator(props) {
   //changePage= (page) =>{props.changePage(page)}
-
-  let pagesArr = (new Array(10)).fill(1).map((a, i) => ++i)
-  
+  console.log(props.countPages)
+  let pagesArr = (new Array(parseInt(props.countPages))).fill(1).map((a, i) => ++i)
+  console.log(pagesArr)
   return (
     
     <div className="Pagination">
