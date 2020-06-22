@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function Main(props) {
   let [searchReq, setSearchReq] = useState(''/* !!sessionStorage.search ? sessionStorage.search  :'' */)
-  let [repos, setRepos] = useState(!!sessionStorage.search ? JSON.parse(sessionStorage.searchedRepos) : !!sessionStorage.popular ? JSON.parse(sessionStorage.popular) : [])
+  let [repos, setRepos] = useState([])
   let [load, setLoad] = useState(false)
   let [page, setPage] = useState(!!sessionStorage.page ? sessionStorage.page : 1)
   let [curSearch, setCurSearch] = useState('')
@@ -16,8 +16,6 @@ function Main(props) {
     console.log(e.target.value)
     setSearchReq(e.target.value)
     sessionStorage.search = e.target.value
-    
-    return null
   }
   
   const getRepos=useCallback(async function getRepos(searchText = '', page='1') {
