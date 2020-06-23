@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Switch>
           <Route render={() => <Main openRep={setRepToOpen} />} exact path='/' />
-          <Route exact render={() => <RepoCard repo={repToOpen} />} path='/repository/:name' />
+          <Route exact render={() => <RepoCard repo={repToOpen} />} path='/repository/:repOwner/:name' />
         </Switch>
       </Router>
     </div>

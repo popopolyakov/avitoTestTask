@@ -4,6 +4,7 @@ import Paginator from './Paginator'
 import '../styles/App.css';
 import axios from 'axios';
 
+
 function Main(props) {
   let [searchReq, setSearchReq] = useState(''/* !!sessionStorage.search ? sessionStorage.search  :'' */)
   let [repos, setRepos] = useState([])
@@ -128,7 +129,7 @@ function Main(props) {
       </header>
       
       <main className="Main-main">
-        {load ? (<p>Гружу</p>) : (<Paginator repos={repos} page={page} changePage={changePage} openRep={openRep} searchText={curSearch} countPages={countPages}></Paginator>)}
+        {load ? (<p>Загрузка</p>) : (<Paginator repos={repos} page={page} changePage={changePage} openRep={openRep} searchText={curSearch} countPages={countPages}></Paginator>)}
       </main>
     </div>
 

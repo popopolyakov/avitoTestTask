@@ -40,7 +40,7 @@ function Paginator(props) {
             {((props.page-1)*10)+(i+1)}
           </div>
           <div className="Pagination__name">
-            <Link to={`/repository/${item.name}`} onClick={() => { props.openRep(i) }}>{item.name}</Link>
+            <Link to={`/repository/${item.owner.login}/${item.name}`} onClick={() => { props.openRep(i) }}>{item.name}</Link>
           </div>
           <div className='Pagination_info'>
             <div className="Pagination__stars"> 
