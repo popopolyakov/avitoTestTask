@@ -52,12 +52,14 @@ function RepoCardDef(props) {
             const { match } = props
             let resRep = await getInfo(`https://api.github.com/repos/${match.params.repOwner}/${match.params.name}`)
             console.log(resRep)
+            sessionStorage.repoCard = JSON.stringify(resRep)
             setRepoCard(resRep)
             let [timeCommit, dateCommit] =[resRep.updated_at.split(/T|Z/)[0], resRep.updated_at.split(/T|Z/)[1]]
             setLastCommit([timeCommit, dateCommit])
             sessionStorage.owner = JSON.stringify(resRep.owner)
             sessionStorage.lastCommit = JSON.stringify([timeCommit, dateCommit])
             setOwner(resRep.owner)
+
             await fetchData(resRep)
         }
         console.log(props.RepoCard)
