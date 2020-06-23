@@ -79,16 +79,14 @@ function RepoCardDef(props) {
                     setOwner(props.repo.owner)
                     
                 } else {
-                    if (!!sessionStorage.repoCard) {
+                    if (!!sessionStorage.repoCard & !!sessionStorage.owner & !!sessionStorage.languages & !!sessionStorage.lastCommit & !!sessionStorage.contributors) {
                         setRepoCard(JSON.parse(sessionStorage.repoCard))
                         setOwner(JSON.parse(sessionStorage.owner))
                         setLanguage(JSON.parse(sessionStorage.languages))
                         setLastCommit(JSON.parse(sessionStorage.lastCommit))
                         setContributors(JSON.parse(sessionStorage.contributors))
-                    } else {
-                        if (!Object.keys(repoCard).length) {
-                            getRepInfo()
-                        }
+                    } else {                
+                        getRepInfo()
                     }
                 }
                 if (!!props.repo.languages_url & !!props.repo.contributors_url) fetchData(props.repo)

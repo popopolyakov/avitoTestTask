@@ -6,7 +6,7 @@
     margin: 0px 10px;
     font-size: 13pt;
     border-radius: 4px;
-    height: 27px;
+
     width: 200px;
 }
 
@@ -16,7 +16,6 @@
 .searchForm__input:focus {
     outline: 1px solid grey;
 }
-
 
 .searchForm__btn:active {
     border: 2px solid royalblue;
@@ -29,7 +28,6 @@
     background-color: lightskyblue;
 }
 .searchForm__input {
-    height: 21px;
     width: 200px;
 }
 
@@ -37,12 +35,5 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-}
-
-.searchForm__btnContainer{
-
-}
-
-.searchContainer{
-   
+    height: 27px;
 }
