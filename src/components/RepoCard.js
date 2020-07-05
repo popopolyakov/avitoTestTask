@@ -104,7 +104,6 @@ function RepoCardDef(props) {
     return (
         <div className="RepoCard">
             <div><h3><Link to='/'>Назад</Link></h3></div>
-            <h1>{`${load}`}</h1>
             <div className="RepoCard__mainInfo">
                     <div className='RepoCard__repoInfo'>
                         <h1>{repoCard.name}</h1>
