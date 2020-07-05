@@ -12,8 +12,10 @@ function RepoCardDef(props) {
     let [contributors, setContributors] = useState([])
     let [lastCommit, setLastCommit] = useState([])
     let [load, setLoad] = useState(false)
+    console.log(load)
 
-    const getInfo=useCallback(async function getInfo(URL) {
+    const getInfo = useCallback(async function getInfo(URL) {
+        setLoad(true)
         let proxyURL = 'https://cors-anywhere.herokuapp.com/' // Чтобы обойти CORS 
         let config = {
           headers: {
@@ -25,14 +27,16 @@ function RepoCardDef(props) {
         console.log(URL)
         let res = await axios.get(proxyURL + URL, config)
         console.log(res.data)
+        setLoad(false)
         return res.data
       },[])
-    
     useEffect(() => {
         //console.log(props.repo,Object.keys(props.repo).length, !!Object.keys(props.repo).length)
-        setLoad(true)
+        
+        
         async function fetchData(rep) {
-            console.log(rep.languages_url)
+            setLoad(true)
+            console.log(load)
             let resLang = await getInfo(rep.languages_url)
             setLanguage(Object.keys(resLang))
             console.log(resLang)
@@ -47,8 +51,11 @@ function RepoCardDef(props) {
             console.log(JSON.stringify(Object.keys(resLang)))
             sessionStorage.languages = JSON.stringify(Object.keys(resLang))
             sessionStorage.contributors = JSON.stringify(topTenContributers)
+            setLoad(false)
         }
         async function getRepInfo() {
+            setLoad(true)
+            console.log(load)
             const { match } = props
             let resRep = await getInfo(`https://api.github.com/repos/${match.params.repOwner}/${match.params.name}`)
             console.log(resRep)
@@ -59,44 +66,45 @@ function RepoCardDef(props) {
             sessionStorage.owner = JSON.stringify(resRep.owner)
             sessionStorage.lastCommit = JSON.stringify([timeCommit, dateCommit])
             setOwner(resRep.owner)
-
+            setLoad(false)
             await fetchData(resRep)
         }
         console.log(props.RepoCard)
+        
         if (!languages.length & !contributors.length & !lastCommit.length) {
-            
-                if (!!Object.keys(props.repo).length) {
-                    sessionStorage.repoCard = JSON.stringify(props.repo)
-                    setRepoCard(props.repo)
-                    console.log(props.repo)
-                    console.log(repoCard);
-                    let [timeCommit, dateCommit] =[props.repo.updated_at.split(/T|Z/)[0], props.repo.updated_at.split(/T|Z/)[1]]
-                    setLastCommit([timeCommit, dateCommit])
-                    console.log(lastCommit)
-                    console.log(props.repo.updated_at);
-                    sessionStorage.owner = JSON.stringify(props.repo.owner)
-                    sessionStorage.lastCommit = JSON.stringify([timeCommit, dateCommit])
-                    setOwner(props.repo.owner)
-                    
-                } else {
-                    if (!!sessionStorage.repoCard & !!sessionStorage.owner & !!sessionStorage.languages & !!sessionStorage.lastCommit & !!sessionStorage.contributors) {
-                        setRepoCard(JSON.parse(sessionStorage.repoCard))
-                        setOwner(JSON.parse(sessionStorage.owner))
-                        setLanguage(JSON.parse(sessionStorage.languages))
-                        setLastCommit(JSON.parse(sessionStorage.lastCommit))
-                        setContributors(JSON.parse(sessionStorage.contributors))
-                    } else {                
-                        getRepInfo()
-                    }
+            console.log(load)
+            if (!!Object.keys(props.repo).length) {
+                sessionStorage.repoCard = JSON.stringify(props.repo)
+                setRepoCard(props.repo)
+                console.log(props.repo)
+                console.log(repoCard);
+                let [timeCommit, dateCommit] =[props.repo.updated_at.split(/T|Z/)[0], props.repo.updated_at.split(/T|Z/)[1]]
+                setLastCommit([timeCommit, dateCommit])
+                console.log(lastCommit)
+                console.log(props.repo.updated_at);
+                sessionStorage.owner = JSON.stringify(props.repo.owner)
+                sessionStorage.lastCommit = JSON.stringify([timeCommit, dateCommit])
+                setOwner(props.repo.owner)
+            } else {
+                if (!!sessionStorage.repoCard & !!sessionStorage.owner & !!sessionStorage.languages & !!sessionStorage.lastCommit & !!sessionStorage.contributors) {
+                    setRepoCard(JSON.parse(sessionStorage.repoCard))
+                    setOwner(JSON.parse(sessionStorage.owner))
+                    setLanguage(JSON.parse(sessionStorage.languages))
+                    setLastCommit(JSON.parse(sessionStorage.lastCommit))
+                    setContributors(JSON.parse(sessionStorage.contributors))
+                } else {                
+                    getRepInfo()
                 }
-                if (!!props.repo.languages_url & !!props.repo.contributors_url) fetchData(props.repo)
             }
-        setLoad(false)
-    }, [props, setLoad, lastCommit, repoCard,setOwner,setLanguage,setContributors,setLastCommit, props.repo, setRepoCard, getInfo, languages.length, contributors.length]);
+            if (!!props.repo.languages_url & !!props.repo.contributors_url) fetchData(props.repo)
+        }
+        console.log(load)
+    }, [load, props, setLoad, lastCommit, repoCard,setOwner,setLanguage,setContributors,setLastCommit, props.repo, setRepoCard, getInfo, languages.length, contributors.length]);
 
     return (
         <div className="RepoCard">
             <div><h3><Link to='/'>Назад</Link></h3></div>
+            <h1>{`${load}`}</h1>
             <div className="RepoCard__mainInfo">
                     <div className='RepoCard__repoInfo'>
                         <h1>{repoCard.name}</h1>
